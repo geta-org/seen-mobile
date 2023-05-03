@@ -2,7 +2,6 @@
   "expo": {
     "name": "seen",
     "slug": "seen",
-    "owner": "geta",
     "version": "1.0.0",
     "scheme": "seen",
     "orientation": "portrait",
