@@ -2,10 +2,12 @@
   "expo": {
     "name": "seen",
     "slug": "seen",
+    "owner": "geta",
     "version": "1.0.0",
+    "scheme": "seen",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -15,13 +17,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "org.geta.seen"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "org.geta.seen"
     },
     "web": {
       "favicon": "./assets/favicon.png"
