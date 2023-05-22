@@ -1,10 +1,21 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
+
+import auth from "@react-native-firebase/auth";
 
 export default function Page() {
+  function handleSignIn() {
+    auth()
+      .signInWithEmailAndPassword("teste@teste.com", "123456")
+      .then((user) => console.log(user))
+      .catch((error) => console.log(error));
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.main}>
         <Text style={styles.title}>Hello World</Text>
+        <Text style={styles.subtitle}>Login with email and password</Text>
+        <Button title="Login" onPress={handleSignIn} />
         <Text style={styles.subtitle}>This is the first page of your app.</Text>
       </View>
     </View>
