@@ -1,7 +1,9 @@
-import { Text, VStack, Center } from "native-base";
+import { Text, VStack, Center, HStack } from "native-base";
 
 import auth from "@react-native-firebase/auth";
 import SignIcon from "@/assets/signicon.svg"
+import SignFrame from "@/assets/signframe.svg"
+import SignFrame2 from "@/assets/signframe2.svg"
 
 import { Input } from "@/components/Input";
 import { Button } from "@/components/SignButton";
@@ -17,24 +19,30 @@ export function SignIn() {
   return (
     <VStack 
       flex={1}
-      
-      padding={12}
       bg="purple.90"
     >
 
       <Center>
-        <Text 
-        fontSize="xl_3" 
-        fontFamily="light"
-        color="black.5"
-      >
-        Entrar
-      </Text>
+        <HStack>
+          <Text 
+            mt={12}
+            fontSize="xl_3" 
+            fontFamily="light"
+            color="black.5"
+            left={32}
+            ml={4}
+            mr={5}
+          >
+            Entrar
+          </Text>
 
-        <SignIcon />
+          <SignFrame />
+        </HStack>
       </Center>
       
-      <Center>
+      <Center bottom={48}>
+        <SignIcon />
+        
         <Input 
           placeholder="Email"
         />
@@ -57,7 +65,9 @@ export function SignIn() {
           onPress={handleSignIn} 
           title="Cadastrar"
         />
-
+        <HStack right={32} bottom={10}>
+          <SignFrame2 />
+        </HStack>
       </Center>
       
     </VStack>
