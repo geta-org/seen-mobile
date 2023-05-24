@@ -50,10 +50,10 @@ export const THEME = extendTheme({
         white: '#FCFCFD'
     },
     fonts: {
-        light: 'Confortaa_300Light',
-        medium: 'Confortaa_500Medium',
-        bold: 'Confortaa_700Bold',
-        regular: 'Confortaa_400Regular'
+        light: 'Comfortaa_300Light',
+        medium: 'Comfortaa_500Medium',
+        bold: 'Comfortaa_700Bold',
+        regular: 'Comfortaa_400Regular'
     },
     fontSizes: {
         xs_2: 10,
