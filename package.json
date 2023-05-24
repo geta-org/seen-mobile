@@ -13,12 +13,14 @@
     "husky:prepare": "husky install"
   },
   "dependencies": {
+    "@expo-google-fonts/comfortaa": "^0.2.3",
     "@react-native-firebase/app": "^17.5.0",
     "@react-native-firebase/auth": "^17.5.0",
     "@types/react": "~18.0.27",
     "expo": "~48.0.15",
     "expo-constants": "~14.2.1",
     "expo-dev-client": "^2.2.1",
+    "expo-font": "^11.1.1",
     "expo-linking": "~4.0.1",
     "expo-router": "^1.5.3",
     "expo-splash-screen": "~0.18.2",
