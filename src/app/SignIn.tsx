@@ -17,8 +17,8 @@ type FormData = {
 };
 
 const schema: ZodType<FormData> = z.object({
-  email: z.string().nonempty("Digite o email").email("Email inválido"),
-  password: z.string().min(6, "A senha precisa de no mínimo 6 caracteres"),
+  email: z.string({ required_error: "Digite o email" }).email("Email inválido"),
+  password: z.string({ required_error: "Digite a senha" }).min(6, "A senha precisa de no mínimo 6 caracteres"),
 });
 
 export function SignIn() {
