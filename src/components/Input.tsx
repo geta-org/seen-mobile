@@ -1,11 +1,11 @@
 import {
-  Input as NativeBaseInput,
-  IInputProps,
   FormControl,
+  IInputProps,
+  Input as NativeBaseInput,
 } from "native-base";
 
 type Props = IInputProps & {
-  errorMessage?: string 
+  errorMessage?: string;
 };
 
 export function Input({ errorMessage, isInvalid, ...rest }: Props) {
@@ -31,7 +31,9 @@ export function Input({ errorMessage, isInvalid, ...rest }: Props) {
         {...rest}
       />
 
-      {errorMessage && (<FormControl.ErrorMessage>{errorMessage}</FormControl.ErrorMessage>)}
+      {errorMessage && (
+        <FormControl.ErrorMessage>{errorMessage}</FormControl.ErrorMessage>
+      )}
     </FormControl>
   );
 }

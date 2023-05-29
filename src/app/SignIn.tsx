@@ -1,13 +1,11 @@
-import { Text, VStack, Center, HStack, ScrollView, Image } from "native-base";
-import { z, ZodType } from "zod";
-import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import auth from "@react-native-firebase/auth";
+import { Center, HStack, Image, ScrollView, Text, VStack } from "native-base";
+import { Controller, useForm } from "react-hook-form";
+import { z, ZodType } from "zod";
 
-import LoginBackground from "@/assets/backgroundlogin.png"
+import LoginBackground from "@/assets/backgroundlogin.png";
 import SignIcon from "@/assets/signicon.svg";
-
 import { Input } from "@/components/Input";
 import { Button } from "@/components/SignButton";
 
@@ -18,7 +16,9 @@ type FormData = {
 
 const schema: ZodType<FormData> = z.object({
   email: z.string({ required_error: "Digite o email" }).email("Email inválido"),
-  password: z.string({ required_error: "Digite a senha" }).min(6, "A senha precisa de no mínimo 6 caracteres"),
+  password: z
+    .string({ required_error: "Digite a senha" })
+    .min(6, "A senha precisa de no mínimo 6 caracteres"),
 });
 
 export function SignIn() {
@@ -37,9 +37,13 @@ export function SignIn() {
   }
 
   return (
-    <ScrollView contentContainerStyle ={{flexGrow: 1}} showsVerticalScrollIndicator={false} bg="purple.90">
+    <ScrollView
+      contentContainerStyle={{ flexGrow: 1 }}
+      showsVerticalScrollIndicator={false}
+      bg="purple.90"
+    >
       <VStack flex={1}>
-        <Image 
+        <Image
           source={LoginBackground}
           alt="signinbackground"
           resizeMode="contain"
@@ -48,12 +52,7 @@ export function SignIn() {
 
         <Center>
           <HStack>
-            <Text
-              mt={12}
-              fontSize="xl_3"
-              fontFamily="light"
-              color="black.5"
-            >
+            <Text mt={12} fontSize="xl_3" fontFamily="light" color="black.5">
               Entrar
             </Text>
           </HStack>
