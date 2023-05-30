@@ -9,7 +9,7 @@ import {
 } from "@expo-google-fonts/comfortaa";
 import { NativeBaseProvider } from "native-base";
 
-import { SignIn } from "@/app/SignIn";
+import { SignUp } from "@/app/SignUp";
 import { THEME } from "@/theme/index";
 
 export default function App() {
@@ -27,7 +27,7 @@ export default function App() {
         translucent
       />
       {fontsLoaded}
-      <SignIn />
+      <SignUp />
     </NativeBaseProvider>
   );
 }
