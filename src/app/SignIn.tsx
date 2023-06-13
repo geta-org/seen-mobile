@@ -1,6 +1,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import auth from "@react-native-firebase/auth";
-import { Center, HStack, Image, ScrollView, Text, VStack } from "native-base";
+import {
+  Center,
+  HStack,
+  Image,
+  ScrollView,
+  Text,
+  Toast,
+  VStack,
+} from "native-base";
 import { Controller, useForm } from "react-hook-form";
 import { z, ZodType } from "zod";
 
@@ -33,9 +41,16 @@ export function SignIn() {
     auth()
       .signInWithEmailAndPassword(email, password)
       .then((user) => console.log(user))
-      .catch((error) => console.log(error));
-  }
+      .catch((error) => {
+        const title = error.message;
 
+        Toast.show({
+          title,
+          placement: "top",
+          bgColor: "red.100",
+        });
+      });
+  }
   return (
     <ScrollView
       contentContainerStyle={{ flexGrow: 1 }}
