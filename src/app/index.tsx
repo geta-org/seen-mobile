@@ -9,7 +9,7 @@ import {
 } from "@expo-google-fonts/comfortaa";
 import { NativeBaseProvider } from "native-base";
 
-import { SignIn } from "@/app/SignIn";
+import { ForgotPassword } from "@/app/ForgotPassword";
 import { Loading } from "@/components/Loading";
 import { THEME } from "@/theme/index";
 
@@ -27,7 +27,7 @@ export default function App() {
         backgroundColor="transparent"
         translucent
       />
-      {fontsLoaded ? <SignIn /> : <Loading />}
+      {fontsLoaded ? <ForgotPassword /> : <Loading />}
     </NativeBaseProvider>
   );
 }
