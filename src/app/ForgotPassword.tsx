@@ -21,7 +21,7 @@ type FormData = {
 };
 
 const schema: ZodType<FormData> = z.object({
-  email: z.string({ required_error: "Digite o email" }).email("Email inválido")
+  email: z.string({ required_error: "Digite o email" }).email("Email inválido"),
 });
 
 export function ForgotPassword() {
@@ -31,11 +31,17 @@ export function ForgotPassword() {
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
-  function handleSignIn({ email }: FormData) {
+  function handleForgotPassword({ email }: FormData) {
     console.log({ email });
     auth()
-      .signInWithEmailAndPassword(email)
-      .then((user) => console.log(user))
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        Toast.show({
+          title: "Email de mudança de senha enviado com sucesso!",
+          placement: "top",
+          bgColor: "green.100",
+        });
+      })
       .catch((error) => {
         const title = error.message;
 
@@ -69,7 +75,6 @@ export function ForgotPassword() {
         </Center>
 
         <Center>
-
           <Controller
             control={control}
             name="email"
@@ -86,7 +91,10 @@ export function ForgotPassword() {
             )}
           />
 
-          <Button onPress={handleSubmit(handleSignIn)} title="Avançar" />
+          <Button
+            onPress={handleSubmit(handleForgotPassword)}
+            title="Avançar"
+          />
         </Center>
       </VStack>
     </ScrollView>
