@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useState } from 'react';
-import { Text, View } from 'react-native';
-import Entypo from '@expo/vector-icons/Entypo';
-import * as SplashScreen from 'expo-splash-screen';
-import * as Font from 'expo-font';
+import { useCallback, useEffect, useState } from "react";
+import { Text, View } from "react-native";
+import Entypo from "@expo/vector-icons/Entypo";
+import * as Font from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -44,8 +44,9 @@ export default function App() {
 
   return (
     <View
-      style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-      onLayout={onLayoutRootView}>
+      style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+      onLayout={onLayoutRootView}
+    >
       <Text>SplashScreen Demo! 👋</Text>
       <Entypo name="rocket" size={30} />
     </View>
