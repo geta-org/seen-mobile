@@ -15,6 +15,7 @@ import { z, ZodType } from "zod";
 import LoginBackground from "@/assets/backgroundlogin.png";
 import SignIcon from "@/assets/signicon.svg";
 import { Input } from "@/components/Input";
+import { InputForm } from "@/components/InputForm";
 import { Button } from "@/components/SignButton";
 
 type FormData = {
@@ -37,7 +38,6 @@ export function SignIn() {
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
   function handleSignIn({ email, password }: FormData) {
-    console.log({ email, password });
     auth()
       .signInWithEmailAndPassword(email, password)
       .then((user) => console.log(user))
@@ -76,33 +76,21 @@ export function SignIn() {
         <Center>
           <SignIcon />
 
-          <Controller
+          <InputForm 
             control={control}
+            placeholder="E-mail"
+            keyboardType="email-address"
+            autoCapitalize="none"
             name="email"
-            render={({ field: { onChange, value } }) => (
-              <Input
-                placeholder="E-mail"
-                keyboardType="email-address"
-                autoCapitalize="none"
-                onChangeText={onChange}
-                value={value}
-                errorMessage={errors.email?.message}
-              />
-            )}
+            errorMessage={errors.email?.message}
           />
 
-          <Controller
+          <InputForm 
             control={control}
+            placeholder="Senha"
+            secureTextEntry
             name="password"
-            render={({ field: { onChange, value } }) => (
-              <Input
-                placeholder="Senha"
-                secureTextEntry
-                onChangeText={onChange}
-                value={value}
-                errorMessage={errors.password?.message}
-              />
-            )}
+            errorMessage={errors.password?.message}
           />
 
           <Text fontSize="sm" color="black.5" mb={8} right={24}>
