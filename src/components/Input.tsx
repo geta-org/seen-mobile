@@ -4,11 +4,11 @@ import {
   Input as NativeBaseInput,
 } from "native-base";
 
-type Props = IInputProps & {
+export type InputProps = IInputProps & {
   errorMessage?: string;
 };
 
-export function Input({ errorMessage, isInvalid, ...rest }: Props) {
+export function Input({ errorMessage, isInvalid, ...rest }: InputProps) {
   const invalid = !!errorMessage || isInvalid;
 
   return (

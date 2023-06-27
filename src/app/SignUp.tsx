@@ -14,7 +14,7 @@ import { z, ZodType } from "zod";
 
 import LoginBackground from "@/assets/backgroundlogin.png";
 import SignIcon from "@/assets/signicon.svg";
-import { Input } from "@/components/Input";
+import { InputForm } from "@/components/InputForm";
 import { Button } from "@/components/SignButton";
 
 type FormData = {
@@ -49,7 +49,7 @@ export function SignUp() {
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
-  function handleSignIn({ name, email, password, confirmPassword }: FormData) {
+  function handleSignUp({ name, email, password, confirmPassword }: FormData) {
     console.log({ name, email, password, confirmPassword });
     auth()
       .createUserWithEmailAndPassword(email, password)
@@ -90,65 +90,41 @@ export function SignUp() {
         <Center>
           <SignIcon />
 
-          <Controller
+          <InputForm
             control={control}
+            placeholder="Nome"
             name="name"
-            render={({ field: { onChange, value } }) => (
-              <Input
-                placeholder="Nome"
-                onChangeText={onChange}
-                value={value}
-                errorMessage={errors.name?.message}
-              />
-            )}
+            errorMessage={errors.name?.message}
           />
 
-          <Controller
+          <InputForm
             control={control}
+            placeholder="E-mail"
+            keyboardType="email-address"
+            autoCapitalize="none"
             name="email"
-            render={({ field: { onChange, value } }) => (
-              <Input
-                placeholder="E-mail"
-                keyboardType="email-address"
-                autoCapitalize="none"
-                onChangeText={onChange}
-                value={value}
-                errorMessage={errors.email?.message}
-              />
-            )}
+            errorMessage={errors.email?.message}
           />
 
-          <Controller
+          <InputForm
             control={control}
+            placeholder="Senha"
+            secureTextEntry
             name="password"
-            render={({ field: { onChange, value } }) => (
-              <Input
-                placeholder="Senha"
-                secureTextEntry
-                onChangeText={onChange}
-                value={value}
-                errorMessage={errors.password?.message}
-              />
-            )}
+            errorMessage={errors.password?.message}
           />
 
-          <Controller
+          <InputForm
             control={control}
+            placeholder="Confirmar senha"
+            secureTextEntry
+            onSubmitEditing={handleSubmit(handleSignUp)}
+            returnKeyType="send"
             name="confirmPassword"
-            render={({ field: { onChange, value } }) => (
-              <Input
-                placeholder="Confirmar senha"
-                secureTextEntry
-                onChangeText={onChange}
-                value={value}
-                onSubmitEditing={handleSubmit(handleSignIn)}
-                returnKeyType="send"
-                errorMessage={errors.confirmPassword?.message}
-              />
-            )}
+            errorMessage={errors.confirmPassword?.message}
           />
 
-          <Button onPress={handleSubmit(handleSignIn)} title="Cadastrar" />
+          <Button onPress={handleSubmit(handleSignUp)} title="Cadastrar" />
         </Center>
       </VStack>
     </ScrollView>
