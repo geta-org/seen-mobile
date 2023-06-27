@@ -15,6 +15,7 @@ import { z, ZodType } from "zod";
 import LoginBackground from "@/assets/backgroundlogin.png";
 import { Input } from "@/components/Input";
 import { Button } from "@/components/SignButton";
+import { InputForm } from "@/components/InputForm";
 
 type FormData = {
   email: string;
@@ -32,7 +33,6 @@ export function ForgotPassword() {
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
   function handleForgotPassword({ email }: FormData) {
-    console.log({ email });
     auth()
       .sendPasswordResetEmail(email)
       .then(() => {
@@ -75,20 +75,13 @@ export function ForgotPassword() {
         </Center>
 
         <Center>
-          <Controller
+          <InputForm
             control={control}
+            placeholder="E-mail"
+            keyboardType="email-address"
+            autoCapitalize="none"
             name="email"
-            render={({ field: { onChange, value } }) => (
-              <Input
-                mt={10}
-                placeholder="E-mail"
-                keyboardType="email-address"
-                autoCapitalize="none"
-                onChangeText={onChange}
-                value={value}
-                errorMessage={errors.email?.message}
-              />
-            )}
+            errorMessage={errors.email?.message}
           />
 
           <Button
