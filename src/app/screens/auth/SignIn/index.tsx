@@ -9,17 +9,13 @@ import {
   Toast,
   VStack,
 } from "native-base";
-import { Controller, useForm } from "react-hook-form";
-import { z, ZodType } from "zod";
-
-import LoginBackground from "@/assets/backgroundlogin.png";
-import SignIcon from "@/assets/signicon.svg";
-import { Input } from "@/components/Input";
-import { InputForm } from "@/components/InputForm";
-import { Button } from "@/components/SignButton";
+import { useForm } from "react-hook-form";
 
 import { SignInData, signInSchema } from "@/app/screens/auth/SignIn/schema";
-
+import LoginBackground from "@/assets/backgroundlogin.png";
+import SignIcon from "@/assets/signicon.svg";
+import { InputForm } from "@/components/InputForm";
+import { Button } from "@/components/SignButton";
 
 export function SignIn() {
   const {
@@ -67,7 +63,7 @@ export function SignIn() {
         <Center>
           <SignIcon />
 
-          <InputForm 
+          <InputForm
             control={control}
             placeholder="E-mail"
             keyboardType="email-address"
@@ -76,7 +72,7 @@ export function SignIn() {
             errorMessage={errors.email?.message}
           />
 
-          <InputForm 
+          <InputForm
             control={control}
             placeholder="Senha"
             secureTextEntry
