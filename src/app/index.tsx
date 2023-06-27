@@ -9,7 +9,7 @@ import {
 } from "@expo-google-fonts/comfortaa";
 import { NativeBaseProvider } from "native-base";
 
-import { SignUp } from "@/app/SignUp";
+import { SignUp } from "@/app/screens/auth/SignUp";
 import { Loading } from "@/components/Loading";
 import { THEME } from "@/theme/index";
 

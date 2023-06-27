@@ -1,4 +1,5 @@
 import { Center, Image, Spinner, VStack } from "native-base";
+
 import Splash from "@/assets/splash.png";
 
 export function Loading() {

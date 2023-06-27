@@ -9,47 +9,27 @@ import {
   Toast,
   VStack,
 } from "native-base";
-import { Controller, useForm } from "react-hook-form";
-import { z, ZodType } from "zod";
+import { useForm } from "react-hook-form";
 
+import { SignUpData, signUpSchema } from "@/app/screens/auth/SignUp/schema";
 import LoginBackground from "@/assets/backgroundlogin.png";
 import SignIcon from "@/assets/signicon.svg";
 import { InputForm } from "@/components/InputForm";
 import { Button } from "@/components/SignButton";
-
-type FormData = {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-};
-
-const schema: ZodType<FormData> = z
-  .object({
-    name: z.string({ required_error: "Digite seu nome" }),
-    email: z
-      .string({ required_error: "Digite o email" })
-      .email("Email inválido"),
-    password: z
-      .string({ required_error: "Digite a senha" })
-      .min(6, "A senha precisa de no mínimo 6 caracteres"),
-    confirmPassword: z
-      .string({ required_error: "Digite a confirmação da senha" })
-      .min(6, "A senha precisa de no mínimo 6 caracteres"),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "As senhas devem ser iguais",
-    path: ["confirmPassword"],
-  });
 
 export function SignUp() {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({ resolver: zodResolver(schema) });
+  } = useForm<SignUpData>({ resolver: zodResolver(signUpSchema) });
 
-  function handleSignUp({ name, email, password, confirmPassword }: FormData) {
+  function handleSignUp({
+    name,
+    email,
+    password,
+    confirmPassword,
+  }: SignUpData) {
     console.log({ name, email, password, confirmPassword });
     auth()
       .createUserWithEmailAndPassword(email, password)
