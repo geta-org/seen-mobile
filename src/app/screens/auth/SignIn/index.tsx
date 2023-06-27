@@ -18,26 +18,17 @@ import { Input } from "@/components/Input";
 import { InputForm } from "@/components/InputForm";
 import { Button } from "@/components/SignButton";
 
-type FormData = {
-  email: string;
-  password: string;
-};
+import { SignInData, signInSchema } from "@/app/screens/auth/SignIn/schema";
 
-const schema: ZodType<FormData> = z.object({
-  email: z.string({ required_error: "Digite o email" }).email("Email inválido"),
-  password: z
-    .string({ required_error: "Digite a senha" })
-    .min(6, "A senha precisa de no mínimo 6 caracteres"),
-});
 
 export function SignIn() {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({ resolver: zodResolver(schema) });
+  } = useForm<SignInData>({ resolver: zodResolver(signInSchema) });
 
-  function handleSignIn({ email, password }: FormData) {
+  function handleSignIn({ email, password }: SignInData) {
     auth()
       .signInWithEmailAndPassword(email, password)
       .then((user) => console.log(user))
