@@ -9,30 +9,26 @@ import {
   Toast,
   VStack,
 } from "native-base";
-import { Controller, useForm } from "react-hook-form";
-import { z, ZodType } from "zod";
+import { useForm } from "react-hook-form";
 
+import {
+  ForgotPasswordData,
+  forgotPasswordSchema,
+} from "@/app/screens/auth/ForgotPassword/schema";
 import LoginBackground from "@/assets/backgroundlogin.png";
-import { Input } from "@/components/Input";
-import { Button } from "@/components/SignButton";
 import { InputForm } from "@/components/InputForm";
-
-type FormData = {
-  email: string;
-};
-
-const schema: ZodType<FormData> = z.object({
-  email: z.string({ required_error: "Digite o email" }).email("Email inválido"),
-});
+import { Button } from "@/components/SignButton";
 
 export function ForgotPassword() {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({ resolver: zodResolver(schema) });
+  } = useForm<ForgotPasswordData>({
+    resolver: zodResolver(forgotPasswordSchema),
+  });
 
-  function handleForgotPassword({ email }: FormData) {
+  function handleForgotPassword({ email }: ForgotPasswordData) {
     auth()
       .sendPasswordResetEmail(email)
       .then(() => {
