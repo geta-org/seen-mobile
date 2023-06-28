@@ -1,45 +1,54 @@
-import { Button, StyleSheet, Text, View } from "react-native";
+import { useCallback, useEffect, useState } from "react";
+import { Text, View } from "react-native";
+import Entypo from "@expo/vector-icons/Entypo";
+import * as Font from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
 
-import auth from "@react-native-firebase/auth";
+// Keep the splash screen visible while we fetch resources
+SplashScreen.preventAutoHideAsync();
 
-export default function Page() {
-  function handleSignIn() {
-    auth()
-      .signInWithEmailAndPassword("teste@teste.com", "123456")
-      .then((user) => console.log(user))
-      .catch((error) => console.log(error));
+export default function App() {
+  const [appIsReady, setAppIsReady] = useState(false);
+
+  useEffect(() => {
+    async function prepare() {
+      try {
+        // Pre-load fonts, make any API calls you need to do here
+        await Font.loadAsync(Entypo.font);
+        // Artificially delay for two seconds to simulate a slow loading
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        // Tell the application to render
+        setAppIsReady(true);
+      }
+    }
+
+    prepare();
+  }, []);
+
+  const onLayoutRootView = useCallback(async () => {
+    if (appIsReady) {
+      // This tells the splash screen to hide immediately! If we call this after
+      // `setAppIsReady`, then we may see a blank screen while the app is
+      // loading its initial state and rendering its first pixels. So instead,
+      // we hide the splash screen once we know the root view has already
+      // performed layout.
+      await SplashScreen.hideAsync();
+    }
+  }, [appIsReady]);
+
+  if (!appIsReady) {
+    return null;
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.main}>
-        <Text style={styles.title}>Hello World</Text>
-        <Text style={styles.subtitle}>Login with email and password</Text>
-        <Button title="Login" onPress={handleSignIn} />
-        <Text style={styles.subtitle}>This is the first page of your app.</Text>
-      </View>
+    <View
+      style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+      onLayout={onLayoutRootView}
+    >
+      <Text>SplashScreen Demo! 👋</Text>
+      <Entypo name="rocket" size={30} />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    padding: 24,
-  },
-  main: {
-    flex: 1,
-    justifyContent: "center",
-    maxWidth: 960,
-    marginHorizontal: "auto",
-  },
-  title: {
-    fontSize: 64,
-    fontWeight: "bold",
-  },
-  subtitle: {
-    fontSize: 36,
-    color: "#38434D",
-  },
-});
