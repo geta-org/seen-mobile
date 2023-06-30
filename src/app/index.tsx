@@ -1,45 +1,33 @@
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StatusBar } from "react-native";
 
-import auth from "@react-native-firebase/auth";
+import {
+  Comfortaa_300Light,
+  Comfortaa_400Regular,
+  Comfortaa_500Medium,
+  Comfortaa_700Bold,
+  useFonts,
+} from "@expo-google-fonts/comfortaa";
+import { NativeBaseProvider } from "native-base";
 
-export default function Page() {
-  function handleSignIn() {
-    auth()
-      .signInWithEmailAndPassword("teste@teste.com", "123456")
-      .then((user) => console.log(user))
-      .catch((error) => console.log(error));
-  }
+import { ForgotPassword } from "@/app/screens/auth/ForgotPassword";
+import { Loading } from "@/components/Loading";
+import { THEME } from "@/theme/index";
 
+export default function App() {
+  const [fontsLoaded] = useFonts({
+    Comfortaa_300Light,
+    Comfortaa_400Regular,
+    Comfortaa_500Medium,
+    Comfortaa_700Bold,
+  });
   return (
-    <View style={styles.container}>
-      <View style={styles.main}>
-        <Text style={styles.title}>Hello World</Text>
-        <Text style={styles.subtitle}>Login with email and password</Text>
-        <Button title="Login" onPress={handleSignIn} />
-        <Text style={styles.subtitle}>This is the first page of your app.</Text>
-      </View>
-    </View>
+    <NativeBaseProvider theme={THEME}>
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent
+      />
+      {fontsLoaded ? <ForgotPassword /> : <Loading />}
+    </NativeBaseProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    padding: 24,
-  },
-  main: {
-    flex: 1,
-    justifyContent: "center",
-    maxWidth: 960,
-    marginHorizontal: "auto",
-  },
-  title: {
-    fontSize: 64,
-    fontWeight: "bold",
-  },
-  subtitle: {
-    fontSize: 36,
-    color: "#38434D",
-  },
-});
