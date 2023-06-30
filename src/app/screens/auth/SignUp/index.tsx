@@ -25,12 +25,9 @@ export function SignUp() {
   } = useForm<SignUpData>({ resolver: zodResolver(signUpSchema) });
 
   function handleSignUp({
-    name,
     email,
-    password,
-    confirmPassword,
+    password
   }: SignUpData) {
-    console.log({ name, email, password, confirmPassword });
     auth()
       .createUserWithEmailAndPassword(email, password)
       .then(() => console.log("Cadastro com sucesso"))
