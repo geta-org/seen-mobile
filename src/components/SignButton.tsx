@@ -16,7 +16,7 @@ export function Button({ title, ...rest }: Props) {
       }}
       {...rest}
     >
-      <Text color="#000000" fontFamily="regular" fontSize="xl">
+      <Text color="black" fontFamily="regular" fontSize="xl">
         {title}
       </Text>
     </NativeBaseButton>

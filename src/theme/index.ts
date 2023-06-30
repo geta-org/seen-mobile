@@ -47,7 +47,7 @@ export const THEME = extendTheme({
       50: "#94E5CB",
       100: "#29CC97",
     },
-    white: "#FCFCFD",
+    white: "#FFFFFF",
   },
   fonts: {
     light: "Comfortaa_300Light",

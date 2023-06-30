@@ -12,7 +12,7 @@ export function Loading() {
         position="absolute"
       />
       <Center top={96}>
-        <Spinner color="#FFFFFF" top={48} size={40} />
+        <Spinner color="white" top={48} size={40} />
       </Center>
     </VStack>
   );
