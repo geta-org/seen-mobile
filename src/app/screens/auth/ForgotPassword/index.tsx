@@ -33,7 +33,7 @@ export function ForgotPassword() {
       .sendPasswordResetEmail(email)
       .then(() => {
         Toast.show({
-          title: "Email de mudança de senha enviado com sucesso!",
+          title: "Enviamos um e-mail para você recuperar sua senha",
           placement: "top",
           bgColor: "green.100",
         });
